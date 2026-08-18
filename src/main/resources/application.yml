@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: backend-shopee
+
+  profiles:
+    active: dev
+
+  jackson:
+    default-property-inclusion: non_null
+    time-zone: Asia/Ho_Chi_Minh
+
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+logging:
+  level:
+    root: INFO
+    com.shopee.backend: DEBUG
+    org.hibernate.SQL: DEBUG
