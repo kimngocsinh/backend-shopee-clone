@@ -48,7 +48,7 @@ public class User extends BaseEntity {
     @Builder.Default
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
-    private UserStatus userStatus = UserStatus.ACTIVE;
+    private UserStatus status = UserStatus.ACTIVE;
 
     @Builder.Default
     @Column(name = "email_verified")

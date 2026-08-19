@@ -36,11 +36,11 @@ public class Address extends BaseEntity{
 
     @Builder.Default
     @Column(length = 20)
-    private String addressType = "HOME";
+    private String type = "HOME";
 
     @Builder.Default
     @Column(name = "is_default")
-    private boolean isDefault = false;
+    private Boolean isDefault = false;
 
     public String toFullAddress() {
         return String.join(", ", detailAddress, ward, district, province);
