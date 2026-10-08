@@ -36,7 +36,7 @@ public class UserMapper {
                 .shopeeCoin(user.getShopeeCoin())
                 .roles(user.getRoles().stream().map(RoleName::name).collect(Collectors.toSet()))
                 .shopId(shopId)
-                .createdAt(user.getCreateAt())
+                .createdAt(user.getCreatedAt())
                 .build();
     }
 

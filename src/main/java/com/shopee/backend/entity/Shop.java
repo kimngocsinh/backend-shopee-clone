@@ -14,6 +14,11 @@ import java.math.BigDecimal;
 @Entity
 @Table(name="shops")
 public class Shop extends BaseEntity {
+
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "owner_id")
+    private User owner;
+
     @Column(nullable = false, length = 150)
     private String name;
 

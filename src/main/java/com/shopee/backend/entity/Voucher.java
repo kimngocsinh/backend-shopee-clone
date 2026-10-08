@@ -20,17 +20,18 @@ public class Voucher extends BaseEntity{
     @Column(nullable = false, unique = true, length = 50)
     private String code;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, length = 200)
     private String name;
 
+    @Column(length = 500)
     private String description;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(nullable = false, length = 20)
     private VoucherType type;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "discount_type", nullable = false)
+    @Column(name = "discount_type", nullable = false, length = 20)
     private DiscountType discountType;
 
     /** Neu PERCENT thi la % (vd 10), neu FIXED_AMOUNT thi la so tien. */
@@ -40,6 +41,10 @@ public class Voucher extends BaseEntity{
     @Builder.Default
     @Column(name = "max_discount", precision = 15, scale = 2)
     private BigDecimal maxDiscount = BigDecimal.ZERO;
+
+    @Builder.Default
+    @Column(name = "min_order_amount", precision = 15, scale = 2)
+    private BigDecimal minOrderAmount = BigDecimal.ZERO;
 
     /** null = voucher toan san. */
     @ManyToOne(fetch = FetchType.LAZY)
@@ -69,7 +74,8 @@ public class Voucher extends BaseEntity{
 
     public boolean isAvailable() {
         LocalDateTime now = LocalDateTime.now();
-        return Boolean.TRUE.equals(isActive) && now.isAfter(startAt)
-                && now.isBefore(endAt) && usedCount < quantity;
+        return Boolean.TRUE.equals(isActive)
+                && now.isAfter(startAt) && now.isBefore(endAt)
+                && usedCount < quantity;
     }
 }
